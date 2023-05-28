@@ -1,0 +1,40 @@
+.button {
+  position: relative;
+  width: 220px;
+  height: 55px;
+  display: block;
+  border: none;
+  outline: none;
+  border-radius: 55px;
+  color: #fff;
+  background-color: $blue-color;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid $blue-color;
+  &:hover {
+    background-color: #fff;
+    color: $blue-color;
+    .svg__wrap {
+      background-color: $blue-color;
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+
+  .svg__wrap {
+    position: absolute;
+    top: 7.5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: $grey-color;
+
+    svg {
+      fill: $blue-color;
+    }
+  }
+}

@@ -11,10 +11,6 @@ export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     // OAuth authentication providers...
-    AppleProvider({
-      clientId: process.env.APPLE_ID,
-      clientSecret: process.env.APPLE_SECRET,
-    }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
@@ -34,7 +30,7 @@ export default NextAuth({
     })
   ],
   pages: {
-    // signIn: "/signin",
+    signIn: "/signin",
   },
   session: {
     strategy: "jwt",
