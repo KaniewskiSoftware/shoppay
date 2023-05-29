@@ -9,6 +9,7 @@ import { useState } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import CircledIconBtn from "@/components/buttons/circledIconBtn";
 import { getProviders, signIn } from "next-auth/react";
+import axios from "axios";
 
 const country = {
   name: "Poland",
@@ -22,8 +23,11 @@ const initialValues = {
   email: "",
   password: "",
   confirm_password: "",
+  success: "",
+  error: "",
 };
 export default function signin({ providers }) {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialValues);
   const {
     login_email,
@@ -32,6 +36,8 @@ export default function signin({ providers }) {
     email,
     password,
     confirm_password,
+    success,
+    error,
   } = user;
 
   const handleChange = (e) => {
@@ -66,6 +72,22 @@ export default function signin({ providers }) {
       .required("Confirm your password.")
       .oneOf([Yup.ref("password")], "Passwords must match."),
   });
+  const signUpHandler = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/auth/signup", {
+        name,
+        email,
+        password,
+      });
+      setUser({ ...user, error: "", success: data.message });
+      setLoading(false);
+    } catch (error) {
+      console.log(error)
+      setLoading(false);
+      setUser({ ...user, success: "", error: error.response.data.message });
+    }
+  };
   return (
     <>
       <Header country={country} />
@@ -136,6 +158,9 @@ export default function signin({ providers }) {
               enableReinitialize
               initialValues={{ name, email, password, confirm_password }}
               validationSchema={registerValidation}
+              onSubmit={() => {
+                signUpHandler();
+              }}
             >
               {(form) => (
                 <Form>
@@ -171,6 +196,8 @@ export default function signin({ providers }) {
                 </Form>
               )}
             </Formik>
+            <div>{success && <span>{success}</span>}</div>
+            <div>{error && <span>{error}</span>}</div>
           </div>
         </div>
       </div>
