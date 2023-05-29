@@ -141,3 +141,13 @@
   border: 1px solid #66666683;
   cursor: pointer;
 }
+
+.error {
+  padding: 10px;
+  color: $error-color;
+}
+
+.success {
+  padding: 10px;
+  color: $success-color;
+}
