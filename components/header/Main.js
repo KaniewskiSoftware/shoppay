@@ -10,7 +10,7 @@ export default function Main() {
     <div className={styles.main}>
       <div className={styles.main__container}>
         <Link className={styles.logo} href="/">
-          <img src="../../../next.svg" alt="logo" />
+          <img src="../../../logo.png" alt="logo" />
         </Link>
         <div className={styles.search}>
           <input type="text" placeholder="Search..." />

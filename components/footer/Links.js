@@ -7,7 +7,7 @@ export default function Links() {
       {links.map((link, index) => (
         <ul key={index}>
           {index === 0 ? (
-            <img src="../../../next.svg" />
+            <img src="../../../logo.png" />
           ) : (
             <b>{link.heading}</b>
           )}
