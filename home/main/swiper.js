@@ -30,7 +30,7 @@ export default function MainSwiper() {
         className="mainSwiper"
       >
         {[...Array(10).keys()].map((index) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             <img src={`../../../images/swiper/${index + 1}.jpg`} alt="" />
           </SwiperSlide>
         ))}
